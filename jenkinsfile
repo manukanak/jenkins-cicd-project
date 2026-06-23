@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/manukanak/jenkins-cicd-project.git'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                sudo mkdir -p /var/www/html
+                sudo cp -r * /var/www/html/
+                '''
+            }
+        }
+    }
+}
